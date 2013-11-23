@@ -1,6 +1,3 @@
-Single Page Application WordPress Theme
-=======================================
-
 If you are looking for a minimal single page application (SPA) theme with WordPress, you have come to the right place.
 
 Build
