@@ -11,7 +11,7 @@ module.exports = function (grunt) {
           mainConfigFile: 'src/main/js/main.js',
           baseUrl: 'src/main/js',
           name: 'main',
-          out: 'target/theme/js/compiled.min.js',
+          out: 'target/spa-wp-theme/js/compiled.js',
           optimize: 'none'
         }
       }
@@ -20,7 +20,7 @@ module.exports = function (grunt) {
       main: {
         options: {
           sassDir: 'src/main/scss',
-          cssDir: 'target/theme',
+          cssDir: 'target/spa-wp-theme',
           environment: 'production'
         }
       }
@@ -54,13 +54,13 @@ module.exports = function (grunt) {
         expand: true,
         cwd: 'src/main/php/',
         src: '**',
-        dest: 'target/theme/'
+        dest: 'target/spa-wp-theme/'
       },
       js: {
         expand: true,
         cwd: 'src/main/js/',
         src: '**',
-        dest: 'target/theme/js/'
+        dest: 'target/spa-wp-theme/js/'
       }
     },
     clean: {
