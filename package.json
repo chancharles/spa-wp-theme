@@ -1,5 +1,5 @@
 {
-  "name": "Single Page Application WordPress Theme",
+  "name": "spa-wp-theme",
   "version": "0.1.0",
   "main": "app.js",
   "repository": "https://github.com/chancharles/spa-wp-theme.git",
