@@ -25,7 +25,7 @@ The entry point for a WordPress theme is the ```index.php``` file. Most of the m
 
 1. Using PHP Class to encapsulate the theme logic to avoid name collision.
 2. Configure a proper URL (```baseUrl```) for RequireJS to load its dependencies. You will want to look at ```src/main/js/requirejs-config.js``` together with ```functions.php```.
-3. Using jQuery with RequireJS in a WordPress environment. The jQuery library is enqueued in ```functions.php``` and is detected for duplication in ```src/main/js/main.js``` file.
+3. Using jQuery with RequireJS in a WordPress environment. The jQuery library is enqueued in ```functions.php``` and is detected to avoid duplicate loading in ```src/main/js/main.js``` file.
 
 JavaScript
 ==========
