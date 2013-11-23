@@ -2,8 +2,10 @@
 module.exports = function (grunt) {
   'use strict';
 
+  var pkg = grunt.file.readJSON('package.json');
+
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+    pkg: pkg,
     requirejs: {
       main: {
         options: {
@@ -11,7 +13,7 @@ module.exports = function (grunt) {
           mainConfigFile: 'src/main/js/main.js',
           baseUrl: 'src/main/js',
           name: 'main',
-          out: 'target/spa-wp-theme/js/compiled.js',
+          out: 'target/' + pkg.name + '/js/compiled.js',
           optimize: 'none'
         }
       }
@@ -20,7 +22,7 @@ module.exports = function (grunt) {
       main: {
         options: {
           sassDir: 'src/main/scss',
-          cssDir: 'target/spa-wp-theme',
+          cssDir: 'target/' + pkg.name,
           environment: 'production'
         }
       }
@@ -54,13 +56,13 @@ module.exports = function (grunt) {
         expand: true,
         cwd: 'src/main/php/',
         src: '**',
-        dest: 'target/spa-wp-theme/'
+        dest: 'target/' + pkg.name + '/'
       },
       js: {
         expand: true,
         cwd: 'src/main/js/',
         src: '**',
-        dest: 'target/spa-wp-theme/js/'
+        dest: 'target/' + pkg.name + '/js/'
       }
     },
     clean: {
