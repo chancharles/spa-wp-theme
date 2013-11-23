@@ -1,0 +1,16 @@
+/*!
+Theme Name: Single Page Application WordPress Theme
+Author: Charles Chan
+Description: A theme designed specifically for writing a single page application against the WordPress backend.
+Version: 1.0
+Text Domain: spa-wp-theme
+Domain Path: /languages/
+Tags:
+
+The "!" at the beginning of the file makes sure that Compass will leave
+this comment block intact.
+*/
+
+// Reset
+@import "compass/reset";
+

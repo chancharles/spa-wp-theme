@@ -1,0 +1,23 @@
+{
+  "name": "Single Page Application WordPress Theme",
+  "version": "0.1.0",
+  "main": "app.js",
+  "repository": "https://github.com/chancharles/spa-wp-theme.git",
+  "author": "Charles Chan",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-contrib-jshint": "~0.7.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-qunit": "~0.3.0",
+    "qunit": "~0.5.16",
+    "connect": "~2.10.1",
+    "grunt-contrib-compass": "~0.6.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0"
+  },
+  "dependencies": {
+    "requirejs": "~2.1.9",
+    "lodash": "~2.2.1"
+  }
+}
