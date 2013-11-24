@@ -1,7 +1,8 @@
-define(["lodash", "jquery"], function (_, $) {
+define(["app/screen/home"], function (homeScreen) {
+  "use strict";
   return {
     render: function () {
-      $("#page").html(_.escape("Congratulation, your site is configured successfully"));
+      homeScreen.render();
     }
   };
 });

@@ -1,16 +1,13 @@
 requirejs.config({
   paths: {
     lodash: 'lib/lodash',
-    jquery: 'jquery-1.9.0'
+    // TODO: npm doesn't have a good jquery package yet.
+    jquery: 'jquery-1.9.0',
+    handlebars: 'lib/handlebars.runtime'
   },
   shim: {
-    'backbone': {
-      //These script dependencies should be loaded before loading
-      //backbone.js
-      deps: ['lodash'],
-      //Once loaded, use the global 'Backbone' as the
-      //module value.
-      exports: 'Backbone'
+    handlebars: {
+      exports: "Handlebars"
     }
   }
 });
@@ -20,10 +17,14 @@ requirejs.config({
  * the library twice.
  */
 if (typeof jQuery === 'function') {
-  define('jquery', function () { return jQuery; });
+  define('jquery', function () {
+    "use strict";
+    return jQuery;
+  });
 }
 
 // Start the main app logic.
 requirejs([ 'app/entry' ], function (entry) {
+  "use strict";
   entry.render();
 });

@@ -4,16 +4,18 @@ module.exports = function (grunt) {
 
   var pkg = grunt.file.readJSON('package.json');
 
+  var targetDir = 'target/' + pkg.name;
+
   grunt.initConfig({
     pkg: pkg,
     requirejs: {
       main: {
         options: {
           findNestedDependencies: true,
-          mainConfigFile: 'src/main/js/main.js',
-          baseUrl: 'src/main/js',
+          mainConfigFile: targetDir + '/js/main.js',
+          baseUrl: targetDir + '/js',
           name: 'main',
-          out: 'target/' + pkg.name + '/js/compiled.js',
+          out: targetDir + '/js/compiled.js',
           optimize: 'none'
         }
       }
@@ -22,7 +24,7 @@ module.exports = function (grunt) {
       main: {
         options: {
           sassDir: 'src/main/scss',
-          cssDir: 'target/' + pkg.name,
+          cssDir: targetDir,
           environment: 'production'
         }
       }
@@ -56,21 +58,53 @@ module.exports = function (grunt) {
         expand: true,
         cwd: 'src/main/php/',
         src: '**',
-        dest: 'target/' + pkg.name + '/'
+        dest: targetDir + '/'
       },
       js: {
         expand: true,
         cwd: 'src/main/js/',
         src: '**',
-        dest: 'target/' + pkg.name + '/js/'
+        dest: targetDir + '/js/'
+      },
+      lib: {
+        files: [
+          {
+            src: [ 'node_modules/lodash/lodash.js' ],
+            dest: targetDir + '/js/lib/lodash.js'
+          },
+          {
+            src: [ 'node_modules/requirejs/require.js' ],
+            dest: targetDir + '/js/lib/require.js'
+          },
+          {
+            src: [ 'node_modules/handlebars/dist/handlebars.runtime.js' ],
+            dest: targetDir + '/js/lib/handlebars.runtime.js'
+          }
+        ]
       }
     },
     clean: {
       main: [ "target" ]
+    },
+    handlebars: {
+      options: {
+        amd: true,
+        namespace: pkg.name + '.Templates',
+        processName: function (filePath) {
+          return filePath.replace(/^src\/main\/hbs\//, '').replace(/\.hbs$/, '');
+        }
+      },
+      main: {
+        files: [
+          {
+            src: [ 'src/main/hbs/**/*.hbs' ],
+            dest: targetDir + '/js/hbs/Templates.js'
+          }
+        ]
+      }
     }
   });
 
-  // Load tasks from "grunt-sample" grunt plugin installed via Npm.
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-qunit');
@@ -78,11 +112,12 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-handlebars');
 
   // this would be run by typing "grunt test" on the command line
   grunt.registerTask('test', ['jshint', 'qunit']);
 
   // the default task can be run just by typing "grunt" on the command line
-  grunt.registerTask('default', ['jshint', 'qunit', 'requirejs', 'compass', 'copy']);
+  grunt.registerTask('default', ['jshint', 'compass', 'handlebars', 'copy', 'requirejs', 'qunit']);
 
 };
